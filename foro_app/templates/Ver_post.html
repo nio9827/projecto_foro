@@ -1,0 +1,39 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Lista de Posts</h1>
+    
+    <form class="d-flex" role="search" method="get">
+      <input class="form-control me-2" type="search" name="search" placeholder="Buscar Post" aria-label="Search" value="{{ query }}">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+    
+    <!-- Lista de Posts
+    <div class="post-list">
+        {% for post in posts %}
+            <div class="post-item">
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                <p>{{ post.content|truncatewords:20 }}</p>
+            </div>
+        {% empty %}
+            <p>No se encontraron posts.</p>
+        {% endfor %}
+    </div>
+    -->
+
+    {% if posts %}
+      <ul class="list-group">
+        {% for post in posts %}
+          <li class="list-group-item">
+            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+            <p>Publicado por {{ post.author }} el {{ post.created_at }}</p>
+            <p>{{ post.content|slice:":200" }}...</p>  <!-- Muestra los primeros 200 caracteres -->
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay posts disponibles.</p>
+    {% endif %}
+  </div>
+{% endblock %}

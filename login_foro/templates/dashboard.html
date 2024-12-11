@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Panel de Control</h1>
+        <p class="lead">Bienvenido, {{ user.username }}</p>
+        <hr class="my-4">
+        <p>Rol: {{ role }}</p>
+        <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Cerrar Sesión</a>
+    </div>
+</div>
+{% endblock %}

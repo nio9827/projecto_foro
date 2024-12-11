@@ -38,7 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'foro_app',
+    'login_foro',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
+
+# Configura el modelo de usuario personalizado
+AUTH_USER_MODEL = 'login_foro.CustomUser'
+
+# Configuraciones de Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Configuraciones de autenticación
+LOGIN_REDIRECT_URL = 'Home'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,6 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

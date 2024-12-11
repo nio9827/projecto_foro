@@ -1,4 +1,7 @@
+{% load static %}
+
 <!doctype html>
+
 <html lang="en">
     <head>
         <title>Zona Estudiantil</title>
@@ -23,12 +26,17 @@
             <div class="container-fluid">
                 <div class="row">
                   <div class="col">
-                    <img src="img/Logo.png" class="img-thumbnail " alt="Logo.png" style="width: 120px; height: 120px;">
+                    <img src="{% static 'img/Logo.png' %}" class="img-thumbnail " alt="Logo.png" style="width: 120px; height: 120px;">
                   </div>
                   <div class="col">
                   </div>
                   <div class="col text-end" >
-                    Sesion
+                    <div class="hstack gap-1 justify-content-end">
+                      <div class="p-2">{{ user.username }}</div>
+                      <div class="p-2">{{ role }}</div>
+                      <div class="p-2"><a class="btn btn-primary" href="{% url 'logout' %}" role="button">Cerrar Sesión</a></div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -41,13 +49,9 @@
                         <a class="nav-link active" aria-current="page" href="{% url "home" %}">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Ver Post</a>
+                        <a class="nav-link" href="{% url "post_list" %}">Ver Post</a>
                       </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Buscar Post" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
                   </div>
                 </div>
               </nav>
@@ -55,8 +59,7 @@
                 <div class="row">
                     <div class="col-8"></div>
                     <div class="col-4">
-                        <button type="button" class="btn btn-success">Crear Post +</button>
-
+                      <button type="button" class="btn btn-success" onclick="window.location.href='{% url 'create_post' %}'">Crear Post +</button>
                     </div>
                   </div>
 

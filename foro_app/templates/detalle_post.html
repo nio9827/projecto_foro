@@ -1,0 +1,31 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ post.title }}</h1>
+    <p>Publicado por {{ post.author }} el {{ post.created_at }}</p>
+    <p>{{ post.content }}</p>
+
+    <h3>Comentarios:</h3>
+    {% if comments %}
+      <ul class="list-group">
+        {% for comment in comments %}
+          <li class="list-group-item">
+            <strong>{{ comment.author }}</strong> dijo:
+            <p>{{ comment.content }}</p>
+            <small>Publicado el {{ comment.created_at }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay comentarios aún.</p>
+    {% endif %}
+
+    <h3>Deja un comentario:</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <button type="submit" class="btn btn-primary">Comentar</button>
+    </form>
+  </div>
+{% endblock %}
